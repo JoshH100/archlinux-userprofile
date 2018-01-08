@@ -1,0 +1,7 @@
+- name: Manage user profile and user settings 
+  hosts: localhost
+  strategy: free
+  gather_facts: True
+  become: false
+  roles:
+    - dotfiles

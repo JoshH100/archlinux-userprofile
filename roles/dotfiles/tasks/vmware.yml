@@ -1,0 +1,11 @@
+---
+- name: setup vmware preferences
+  block:
+    - command: pacman -Qs vmware-workstation
+      register: vmware_installed
+      ignore_errors: yes
+      #    - debug: msg="{{vmware_installed}}"
+
+      #    - lineinfile: path="~/.vmware/preferences" regex='^prefvmx\.defaultVMPath' line='prefvmx.defaultVMPath = "/work/vmware"' state=present create=yes
+    - lineinfile: path="~/.vmware/preferences"  line='prefvmx.defaultVMPath = "/work/vmware"' state=present create=yes
+      when: vmware_installed.rc == 0
